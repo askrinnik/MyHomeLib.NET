@@ -13,7 +13,7 @@ namespace ConsoleApp1
     private static void MyCall2()
     {
       var bookName = "Башня ласточки%";
-      var repo = new MHLRepository("librusec_local_fb2.hlc2");
+      var repo = new MHLRepository("D:\\Downloads\\librusec_local_fb2.hlc2");
       var books = repo.GetBooksByName(bookName);
       foreach (var book in books)
       {
