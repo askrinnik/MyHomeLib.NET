@@ -25,7 +25,9 @@ namespace MyHomeLib.Database
     {
       if (reader == null)
         throw new ArgumentNullException(nameof(reader));
-      return reader.GetString(reader.GetOrdinal(fieldName));
+
+      int ordinal = reader.GetOrdinal(fieldName);
+      return reader.IsDBNull(ordinal) ? string.Empty : reader.GetString(ordinal);
     }
     public static int GetInt32(this SqliteDataReader reader, string fieldName)
     {

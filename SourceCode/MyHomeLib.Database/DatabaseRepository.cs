@@ -16,7 +16,7 @@ namespace MyHomeLib.Database
     public IEnumerable<BookInfo> GetBooksByTitle(string titlePart)
     {
       const string query = @"select s.SeriesTitle, a.FirstName, a.LastName, b.BookID, b.Title, b.UpdateDate, b.Folder, b.FileName, b.Ext, b.BookSize, b.IsDeleted from Books b
-        join Series s on s.SeriesID = b.SeriesID
+        left outer join Series s on s.SeriesID = b.SeriesID
         join Author_List al on al.BookID = b.BookID
         join Authors a on a.AuthorID = al.AuthorID
         where SearchTitle like $title";
@@ -69,7 +69,7 @@ namespace MyHomeLib.Database
       using var command = connection.CreateCommand();
       command.CommandText =
       @"select s.SeriesTitle, a.FirstName, a.LastName, b.Title,  b.* from Books b
-join Series s on s.SeriesID = b.SeriesID
+left join Series s on s.SeriesID = b.SeriesID
 join Author_List al on al.BookID = b.BookID
 join Authors a on a.AuthorID = al.AuthorID
 where Title like $name";
