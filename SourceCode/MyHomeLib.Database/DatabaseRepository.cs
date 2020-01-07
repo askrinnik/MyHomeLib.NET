@@ -15,7 +15,7 @@ namespace MyHomeLib.Database
 
     public IEnumerable<BookInfo> GetBooksByTitle(string titlePart)
     {
-      const string query = @"select s.SeriesTitle, a.FirstName, a.LastName, b.BookID, b.Title, b.UpdateDate, b.Folder, b.FileName, b.BookSize, b.IsDeleted from Books b
+      const string query = @"select s.SeriesTitle, a.FirstName, a.LastName, b.BookID, b.Title, b.UpdateDate, b.Folder, b.FileName, b.Ext, b.BookSize, b.IsDeleted from Books b
         join Series s on s.SeriesID = b.SeriesID
         join Author_List al on al.BookID = b.BookID
         join Authors a on a.AuthorID = al.AuthorID
@@ -37,6 +37,7 @@ namespace MyHomeLib.Database
             UpdateDate = reader.GetString("UpdateDate"),
             Folder = reader.GetString("Folder"),
             FileName = reader.GetString("FileName"),
+            Ext = reader.GetString("Ext"),
             BookSize = reader.GetInt32("BookSize"),
             IsDeleted = reader.GetInt32("IsDeleted") == 1,
           });
@@ -60,7 +61,7 @@ namespace MyHomeLib.Database
       });
     }
 
-    private static void MyCall()
+    public static void MyCall()
     {
       var bookName = "Башня ласточки%";
       using var connection = new SqliteConnection("Data Source=librusec_local_fb2.hlc2");

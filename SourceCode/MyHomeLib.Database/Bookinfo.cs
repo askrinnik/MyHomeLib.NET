@@ -10,6 +10,7 @@
     public string UpdateDate { get; internal set; }
     public string Folder { get; internal set; }
     public string FileName { get; internal set; }
+    public string Ext { get; internal set; }
     public int BookSize { get; internal set; }
     public bool IsDeleted { get; internal set; }
   }
