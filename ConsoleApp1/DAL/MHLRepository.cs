@@ -20,11 +20,11 @@ namespace MyHomeLib.DAL
         join Series s on s.SeriesID = b.SeriesID
         join Author_List al on al.BookID = b.BookID
         join Authors a on a.AuthorID = al.AuthorID
-        where Title like $name";
+        where SearchTitle like $name";
       return ExecuteCommand(command =>
         {
           command.CommandText = query;
-          command.Parameters.AddWithValue("$name", bookNamePart);
+          command.Parameters.AddWithValue("$name", bookNamePart.ToUpperInvariant());
         }, 
         reader =>
           new BookInfo
