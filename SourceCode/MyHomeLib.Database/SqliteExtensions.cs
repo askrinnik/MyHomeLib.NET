@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace MyHomeLib.DAL
+namespace MyHomeLib.Database
 {
-  public static class SqliteExtensions
+  internal static class SqliteExtensions
   {
     public static List<T> ReadData<T>(this SqliteCommand stmt, Func<SqliteDataReader, T> getElement)
     {
+      if (stmt == null)
+        throw new ArgumentNullException(nameof(stmt));
+
       var list = new List<T>();
       using (var rdr = stmt.ExecuteReader())
         while (rdr.Read())
@@ -20,10 +23,14 @@ namespace MyHomeLib.DAL
     }
     public static string GetString(this SqliteDataReader reader, string fieldName)
     {
+      if (reader == null)
+        throw new ArgumentNullException(nameof(reader));
       return reader.GetString(reader.GetOrdinal(fieldName));
     }
     public static int GetInt32(this SqliteDataReader reader, string fieldName)
     {
+      if (reader == null)
+        throw new ArgumentNullException(nameof(reader));
       return reader.GetInt32(reader.GetOrdinal(fieldName));
     }
 

@@ -1,31 +1,31 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MyHomeLib.DAL
+namespace MyHomeLib.Database
 {
-  public class MHLRepository
+  public class DatabaseRepository : IDatabaseRepository
   {
     private readonly string dbFilePath;
 
-    public MHLRepository(string dbFilePath)
+    public DatabaseRepository(string dbFilePath)
     {
       this.dbFilePath = dbFilePath;
     }
 
-    public IEnumerable<BookInfo> GetBooksByName(string bookNamePart)
+    public IEnumerable<BookInfo> GetBooksByTitle(string titlePart)
     {
       const string query = @"select s.SeriesTitle, a.FirstName, a.LastName, b.BookID, b.Title, b.UpdateDate, b.Folder, b.FileName, b.BookSize, b.IsDeleted from Books b
         join Series s on s.SeriesID = b.SeriesID
         join Author_List al on al.BookID = b.BookID
         join Authors a on a.AuthorID = al.AuthorID
-        where SearchTitle like $name";
+        where SearchTitle like $title";
+
       return ExecuteCommand(command =>
         {
           command.CommandText = query;
-          command.Parameters.AddWithValue("$name", bookNamePart.ToUpperInvariant());
-        }, 
+          command.Parameters.AddWithValue("$title", titlePart.ToUpperInvariant());
+        },
         reader =>
           new BookInfo
           {
@@ -38,7 +38,7 @@ namespace MyHomeLib.DAL
             Folder = reader.GetString("Folder"),
             FileName = reader.GetString("FileName"),
             BookSize = reader.GetInt32("BookSize"),
-            IsDeleted = reader.GetInt32("IsDeleted")==1,
+            IsDeleted = reader.GetInt32("IsDeleted") == 1,
           });
     }
 
@@ -58,6 +58,30 @@ namespace MyHomeLib.DAL
         var data = command.ReadData(getElement);
         return data;
       });
+    }
+
+    private static void MyCall()
+    {
+      var bookName = "Башня ласточки%";
+      using var connection = new SqliteConnection("Data Source=librusec_local_fb2.hlc2");
+      connection.Open();
+      using var command = connection.CreateCommand();
+      command.CommandText =
+      @"select s.SeriesTitle, a.FirstName, a.LastName, b.Title,  b.* from Books b
+join Series s on s.SeriesID = b.SeriesID
+join Author_List al on al.BookID = b.BookID
+join Authors a on a.AuthorID = al.AuthorID
+where Title like $name";
+      command.Parameters.AddWithValue("$name", bookName);
+
+      using var reader = command.ExecuteReader();
+      while (reader.Read())
+      {
+        var SeriesTitle = reader.GetString(0);
+
+        Console.WriteLine($"SeriesTitle: {SeriesTitle}");
+      }
+
     }
 
 
