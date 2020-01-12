@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.Database", "MyHom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRusEc.FileStorage", "LibRusEc.FileStorage\LibRusEc.FileStorage.csproj", "{E0150EBA-CFAD-426B-8B79-E83077705721}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeLib.Database.API", "MyHomeLib.Database.API\MyHomeLib.Database.API.csproj", "{C2661B3B-2F01-4E91-BA9E-6773D1F3C7BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.Database.API", "MyHomeLib.Database.API\MyHomeLib.Database.API.csproj", "{C2661B3B-2F01-4E91-BA9E-6773D1F3C7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeLib.Database.Web", "MyHomeLib.Database.Web\MyHomeLib.Database.Web.csproj", "{695AA366-299B-4937-AE9B-4B352E7C4E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C2661B3B-2F01-4E91-BA9E-6773D1F3C7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2661B3B-2F01-4E91-BA9E-6773D1F3C7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2661B3B-2F01-4E91-BA9E-6773D1F3C7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{695AA366-299B-4937-AE9B-4B352E7C4E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695AA366-299B-4937-AE9B-4B352E7C4E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695AA366-299B-4937-AE9B-4B352E7C4E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695AA366-299B-4937-AE9B-4B352E7C4E47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
