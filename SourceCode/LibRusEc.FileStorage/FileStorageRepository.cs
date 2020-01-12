@@ -2,7 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 
-namespace MyHomeLib.FileStorage
+namespace LibRusEc.FileStorage
 {
   public class FileStorageRepository
   {

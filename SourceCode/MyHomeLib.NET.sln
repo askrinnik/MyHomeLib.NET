@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{2DF16500-F85B-44AA-A5E0-64A52A5502A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeLib.Database", "MyHomeLib.Database\MyHomeLib.Database.csproj", "{5CF2755D-9345-4283-A601-1BF139A20F99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.Database", "MyHomeLib.Database\MyHomeLib.Database.csproj", "{5CF2755D-9345-4283-A601-1BF139A20F99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeLib.FileStorage", "MyHomeLib.FileStorage\MyHomeLib.FileStorage.csproj", "{E0150EBA-CFAD-426B-8B79-E83077705721}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRusEc.FileStorage", "LibRusEc.FileStorage\LibRusEc.FileStorage.csproj", "{E0150EBA-CFAD-426B-8B79-E83077705721}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
