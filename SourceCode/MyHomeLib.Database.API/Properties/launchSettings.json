@@ -20,7 +20,7 @@
     "MyHomeLib.Database.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/Book/крещение ог%",
+      "launchUrl": "api/Book",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

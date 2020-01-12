@@ -18,12 +18,20 @@ namespace MyHomeLib.Database.API.Controllers
       this.repository = repository;
     }
 
+    // GET: api/Book
+    [HttpGet]
+    public string Get()
+    {
+      return "OK";
+    }
+
     // GET: api/Book/test
     [HttpGet("{titlePart}", Name = "Get")]
     public IEnumerable<BookInfo> Get(string titlePart)
     {
       if (string.IsNullOrWhiteSpace(titlePart) || titlePart.Length<5)
-        return null;
+        return Array.Empty<BookInfo>();
+
       return repository.GetBooksByTitle(titlePart);
     }
   }
