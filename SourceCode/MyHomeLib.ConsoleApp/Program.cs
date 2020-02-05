@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Configuration;
 
-namespace ConsoleApp1
+namespace MyHomeLib.ConsoleApp
 {
   class Program
   {

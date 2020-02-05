@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{2DF16500-F85B-44AA-A5E0-64A52A5502A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.ConsoleApp", "MyHomeLib.ConsoleApp\MyHomeLib.ConsoleApp.csproj", "{2DF16500-F85B-44AA-A5E0-64A52A5502A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.Database", "MyHomeLib.Database\MyHomeLib.Database.csproj", "{5CF2755D-9345-4283-A601-1BF139A20F99}"
 EndProject
@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibRusEc.FileStorage", "Lib
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.Database.API", "MyHomeLib.Database.API\MyHomeLib.Database.API.csproj", "{C2661B3B-2F01-4E91-BA9E-6773D1F3C7BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomeLib.Database.Web", "MyHomeLib.Database.Web\MyHomeLib.Database.Web.csproj", "{695AA366-299B-4937-AE9B-4B352E7C4E47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomeLib.Database.Web", "MyHomeLib.Database.Web\MyHomeLib.Database.Web.csproj", "{695AA366-299B-4937-AE9B-4B352E7C4E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

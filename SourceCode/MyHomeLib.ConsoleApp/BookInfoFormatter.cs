@@ -1,7 +1,7 @@
 ﻿using MyHomeLib.Database;
 using System;
 
-namespace ConsoleApp1
+namespace MyHomeLib.ConsoleApp
 {
   public static class BookInfoFormatter
   {
