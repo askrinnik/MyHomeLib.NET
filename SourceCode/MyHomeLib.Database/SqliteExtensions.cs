@@ -6,7 +6,7 @@ namespace MyHomeLib.Database
 {
   internal static class SqliteExtensions
   {
-    public static List<T> ReadData<T>(this SqliteCommand stmt, Func<SqliteDataReader, T> getElement)
+    public static List<T> ReadData<T>(this SqliteCommand stmt, Func<SqliteDataReader, T> getElement) 
     {
       if (stmt == null)
         throw new ArgumentNullException(nameof(stmt));
@@ -33,7 +33,8 @@ namespace MyHomeLib.Database
     {
       if (reader == null)
         throw new ArgumentNullException(nameof(reader));
-      return reader.GetInt32(reader.GetOrdinal(fieldName));
+      int ordinal = reader.GetOrdinal(fieldName);
+      return reader.IsDBNull(ordinal) ? 0 : reader.GetInt32(reader.GetOrdinal(fieldName));
     }
 
   }

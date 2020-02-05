@@ -6,6 +6,12 @@ namespace MyHomeLib.Database
 {
   public class DatabaseRepository : IDatabaseRepository
   {
+    private const string commonQuaryPart =
+      @"select s.SeriesTitle, a.FirstName, a.LastName, b.BookID, b.Title, b.UpdateDate, b.Folder, b.FileName, b.Ext, b.BookSize, b.IsDeleted, b.SeqNumber from Books b
+        left outer join Series s on s.SeriesID = b.SeriesID
+        join Author_List al on al.BookID = b.BookID 
+        join Authors a on a.AuthorID = al.AuthorID ";
+
     private readonly string dbFilePath;
 
     public DatabaseRepository(string dbFilePath)
@@ -15,32 +21,45 @@ namespace MyHomeLib.Database
 
     public IEnumerable<BookInfo> GetBooksByTitle(string titlePart)
     {
-      const string query = @"select s.SeriesTitle, a.FirstName, a.LastName, b.BookID, b.Title, b.UpdateDate, b.Folder, b.FileName, b.Ext, b.BookSize, b.IsDeleted from Books b
-        left outer join Series s on s.SeriesID = b.SeriesID
-        join Author_List al on al.BookID = b.BookID
-        join Authors a on a.AuthorID = al.AuthorID
-        where SearchTitle like $title";
+      const string query = commonQuaryPart + "where SearchTitle like $title";
 
       return ExecuteCommand(command =>
-        {
-          command.CommandText = query;
-          command.Parameters.AddWithValue("$title", titlePart.ToUpperInvariant());
-        },
-        reader =>
-          new BookInfo
-          {
-            SeriesTitle = reader.GetString("SeriesTitle"),
-            AuthorFirstName = reader.GetString("FirstName"),
-            AuthorLastName = reader.GetString("LastName"),
-            BookID = reader.GetInt32("BookID"),
-            BookTitle = reader.GetString("Title"),
-            UpdateDate = reader.GetString("UpdateDate"),
-            Folder = reader.GetString("Folder"),
-            FileName = reader.GetString("FileName"),
-            Ext = reader.GetString("Ext"),
-            BookSize = reader.GetInt32("BookSize"),
-            IsDeleted = reader.GetInt32("IsDeleted") == 1,
-          });
+      {
+        command.CommandText = query;
+        command.Parameters.AddWithValue("$title", titlePart.ToUpperInvariant());
+      },
+      GetBookInfo);
+    }
+
+    public IEnumerable<BookInfo> GetBooksBySerie(string titlePart)
+    {
+      const string query = commonQuaryPart + "where SearchSeriesTitle like $title";
+
+      return ExecuteCommand(command =>
+      {
+        command.CommandText = query;
+        command.Parameters.AddWithValue("$title", titlePart.ToUpperInvariant());
+      },
+      GetBookInfo);
+    }
+
+    private static BookInfo GetBookInfo(SqliteDataReader reader)
+    {
+      return new BookInfo
+      {
+        SeriesTitle = reader.GetString("SeriesTitle"),
+        AuthorFirstName = reader.GetString("FirstName"),
+        AuthorLastName = reader.GetString("LastName"),
+        ID = reader.GetInt32("BookID"),
+        BookTitle = reader.GetString("Title"),
+        UpdateDate = reader.GetString("UpdateDate"),
+        Folder = reader.GetString("Folder"),
+        FileName = reader.GetString("FileName"),
+        Ext = reader.GetString("Ext"),
+        BookSize = reader.GetInt32("BookSize"),
+        SeqNumber = reader.GetInt32("SeqNumber"),
+        IsDeleted = reader.GetInt32("IsDeleted") == 1,
+      };
     }
 
     private T ExecuteCommand<T>(Func<SqliteCommand, T> getResult)
