@@ -18,7 +18,7 @@ namespace MyHomeLib.ConsoleApp
 
     private static string GetSeriesTitle(string value)
     {
-      return string.IsNullOrWhiteSpace(value) ? "" : value + " - ";
+      return string.IsNullOrWhiteSpace(value) ? "" : $"Serie: {value}\n    ";
     }
   }
 }
